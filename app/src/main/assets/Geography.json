@@ -1,0 +1,22 @@
+{
+  "questionsData": [
+    {
+      "id": 1,
+      "qs": "What is the smallest country in the world?",
+      "option1": "Ben Nevis",
+      "option2": "Colcheste",
+      "option3": "Slovenia",
+      "option4": "Vatican City",
+      "answer": "Vatican City"
+    },
+    {
+      "id": 2,
+      "qs": "What is the highest mountain in Britain?",
+      "option1": "Warsaw",
+      "option2": "Ickenham",
+      "option3": "El Salvador",
+      "option4": "Nigeria",
+      "answer": "Ickenham"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "categories": [
+    {
+      "id": "1xOrdinary",
+      "name": "Ordinary",
+      "img": "ic_bookmark"
+    },
+    {
+      "id": "2xGeography",
+      "name": "Geography",
+      "img": "ic_heart"
+    },
+    {
+      "id": "3xHistory",
+      "name": "History",
+      "img": "ic_history"
+    },
+    {
+      "id": "4xScience",
+      "name": "Science",
+      "img": "ic_chemistry_category"
+    },
+    {
+      "id": "5xSports",
+      "name": "Sports",
+      "img": "ic_sports"
+    },
+    {
+      "id": "6xUniverse",
+      "name": "Universe",
+      "img": "ic_rules"
+    }
+  ]
+}

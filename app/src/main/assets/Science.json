@@ -1,0 +1,40 @@
+{
+  "questionsData": [
+    {
+      "id": 1,
+      "qs": "What is the capital city of Bangladesh?",
+      "option1": "Rajshahi",
+      "option2": "Dhaka",
+      "option3": "Rangpur",
+      "option4": "Comilla",
+      "answer": "Dhaka"
+    },
+    {
+      "id": 2,
+      "qs": "Who am I?",
+      "option1": "Fahim",
+      "option2": "Sajib",
+      "option3": "Sadia",
+      "option4": "Flora",
+      "answer": "Sajib"
+    },
+    {
+      "id": 3,
+      "qs": "What is apple?",
+      "option1": "Fruit",
+      "option2": "Animal",
+      "option3": "Tree",
+      "option4": "House",
+      "answer": "Fruit"
+    },
+    {
+      "id": 4,
+      "qs": "How many letters in A to Z?",
+      "option1": "35",
+      "option2": "26",
+      "option3": "36",
+      "option4": "21",
+      "answer": "26"
+    }
+  ]
+}
