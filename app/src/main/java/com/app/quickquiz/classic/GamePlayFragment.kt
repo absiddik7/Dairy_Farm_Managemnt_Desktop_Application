@@ -45,7 +45,6 @@ class GamePlayFragment : Fragment() {
     private val viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -139,6 +138,7 @@ class GamePlayFragment : Fragment() {
         countDownTimer()
 
         binding.bookmarkButton.setOnClickListener{
+            binding.bookmarkButton.setImageResource(R.drawable.ic_bookmark_fill)
             insertBookmark()
         }
 
@@ -309,7 +309,12 @@ class GamePlayFragment : Fragment() {
             setTitle("Are you sure?")
             setMessage("Do you want to leave?")
             setPositiveButton("Yes") { _, _ ->
-                findNavController().navigate(GamePlayFragmentDirections.actionGamePlayFragmentToHomeFragment())
+                findNavController().navigate(GamePlayFragmentDirections.actionGamePlayFragmentToScoreFragment(
+                    rightAns,
+                    wrongAns,
+                    unAnswered,
+                    token
+                ))
             }
             setNegativeButton("No", null)
         }
@@ -347,37 +352,6 @@ class GamePlayFragment : Fragment() {
             continue
 
         }
-    }
-
-
-    private fun duplicateQSCheck() {
-        //val application = requireNotNull(this.activity).application
-        // val dataSource = BookmarkDatabase.getInstance(application).bookmarkDatabaseDao
-        uiScope.launch {
-            withContext(Dispatchers.IO) {
-                //playAnim(binding.questionText, 0, dbQuestion[index].question)
-                //Log.e("error","error from check duplicate  part")
-
-                // val allQS = dataSource.getAllQS()
-                // val s = allQS.size
-                //Log.i("info","bookmark db size $s")
-                //if (allQS.isNotEmpty()) {
-
-                //for (qs in allQS) {
-//                        if (dbQuestion[index].question != allQS) {
-//                            playAnim(binding.questionText, 0, dbQuestion[index].question)
-//                            //val q = dbQuestion[index].question
-//                            //Log.e("info","bookmark db qs =  $qs")
-//                            //Log.e("info","qs db qs =  $q")
-//                            //playAnim(binding.questionText, 0, dbQuestion[index].question)
-//                            Log.e("error","error from check duplicate IF part play")
-//                            //break
-//                        }
-                //}
-                //}
-            }
-        }
-
     }
 
     private fun insertBookmark() {

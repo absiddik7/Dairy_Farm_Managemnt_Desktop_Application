@@ -29,7 +29,7 @@
     </fragment>
     <fragment
         android:id="@+id/bookmarkFragment"
-        android:name="com.app.quickquiz.ui.BookmarkFragment"
+        android:name="com.app.quickquiz.bookmark.BookmarkFragment"
         android:label="fragment_bookmark"
         tools:layout="@layout/fragment_bookmark" >
         <action
