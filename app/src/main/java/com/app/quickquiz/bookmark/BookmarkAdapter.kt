@@ -29,8 +29,10 @@ class BookmarkAdapter(
         val data = bookmarkData[position]
         val qs = data.questions
         val ans = data.correctAns
+        val id = data.id.toString()
         holder.qsText.text = "Q: $qs"
         holder.qsAns.text = "Ans: $ans"
+        holder.qsNo.text = "$id."
     }
 
     override fun getItemCount(): Int {
@@ -38,9 +40,9 @@ class BookmarkAdapter(
     }
 
     inner class BookmarkViewModelHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        var qsNo: TextView = itemView.findViewById(R.id.qsNo_txt)
         var qsText: TextView = itemView.findViewById(R.id.bookmark_qs)
         var qsAns: TextView = itemView.findViewById(R.id.bookmark_qs_ans)
     }
-
 
 }

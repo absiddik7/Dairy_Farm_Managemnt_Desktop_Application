@@ -1,5 +1,6 @@
 package com.app.quickquiz.bookmark
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -19,6 +20,7 @@ class BookmarkFragment : Fragment() {
     private lateinit var binding: FragmentBookmarkBinding
     private lateinit var bookmarkViewModel:BookmarkViewModel
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,8 +39,14 @@ class BookmarkFragment : Fragment() {
         bookmarkViewModel.getAllBookmarked()
 
         bookmarkViewModel.allBookmark.observe(viewLifecycleOwner,{
+
+            val bookmarkDataSize = it.size
+            if (bookmarkDataSize < 1){
+                binding.emptyBookmarkTxt.text = "Empty Bookmark!"
+            }
             val adapter = BookmarkAdapter(requireContext(),it)
             adapter.notifyDataSetChanged()
+
 
             binding.recyclerViewBookmark.layoutManager = LinearLayoutManager(requireContext())
             binding.recyclerViewBookmark.adapter = adapter
