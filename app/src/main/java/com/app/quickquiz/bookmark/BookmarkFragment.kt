@@ -47,7 +47,6 @@ class BookmarkFragment : Fragment() {
             val adapter = BookmarkAdapter(requireContext(),it)
             adapter.notifyDataSetChanged()
 
-
             binding.recyclerViewBookmark.layoutManager = LinearLayoutManager(requireContext())
             binding.recyclerViewBookmark.adapter = adapter
         })

@@ -1,12 +1,12 @@
 package com.app.quickquiz.bookmarkDB
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
-import com.app.quickquiz.database.CategoriesScore
 
 @Dao
-interface BookmarkDao {
+interface  BookmarkDao {
 
     @Insert
     fun insert(bookmark: BookmarkData)
@@ -19,5 +19,9 @@ interface BookmarkDao {
 
     @Query("SELECT * from bookmark_table WHERE bookmarkQS == :isBookmarked ORDER BY id ASC")
     fun getAllBookmark(isBookmarked:Boolean): List<BookmarkData>
+
+    @Query("DELETE FROM bookmark_table WHERE questions = :questions")
+    suspend fun cancelBookmark(questions: String)
+
 
 }

@@ -242,7 +242,12 @@ class ArcadeFragment : Fragment() {
             setCancelable(true)
             setTitle("Are you sure?")
             setMessage("Do you want to leave?")
-            setPositiveButton("Yes"){_,_ -> findNavController().navigate(ArcadeFragmentDirections.actionArcadeFragmentToHomeFragment())}
+            setPositiveButton("Yes"){_,_ -> findNavController().navigate(ArcadeFragmentDirections.actionArcadeFragmentToScoreFragment(
+                rightAns,
+                wrongAns,
+                0,
+                "Arcade"
+            ))}
             setNegativeButton("No",null)
         }
         val dialog: AlertDialog = builder.create()

@@ -7,8 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.DecelerateInterpolator
+import android.widget.CheckBox
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -44,6 +46,7 @@ class GamePlayFragment : Fragment() {
     private var categoryName = ""
     private val viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
+    private lateinit var bookmark: CheckBox
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -137,9 +140,17 @@ class GamePlayFragment : Fragment() {
 
         countDownTimer()
 
-        binding.bookmarkButton.setOnClickListener{
-            binding.bookmarkButton.setImageResource(R.drawable.ic_bookmark_fill)
-            insertBookmark()
+        bookmark = binding.bookmarkBtn
+        bookmark.setOnClickListener{
+            if(bookmark.isChecked){
+                insertBookmark()
+                Toast.makeText(requireContext(), "Added to Bookmarks", Toast.LENGTH_SHORT)
+                    .show()
+            } else{
+                cancelBookmark()
+                Toast.makeText(requireContext(), "Removed to Bookmarks", Toast.LENGTH_SHORT)
+                    .show()
+            }
         }
 
         binding.nextBtn.setOnClickListener {
@@ -151,6 +162,7 @@ class GamePlayFragment : Fragment() {
                 option4.text = ""
             }
 
+            bookmark.isChecked = false
             binding.nextBtn.isEnabled = false
             binding.nextBtn.alpha = 0.5F
             enableOption(true)
@@ -159,8 +171,6 @@ class GamePlayFragment : Fragment() {
             if (index < dbQuestion.size) {
                 count = 0
                 playAnim(binding.questionText, 0, dbQuestion[index].question)
-                //duplicateQSCheck()
-
                 timer.cancel()
             } else {
                 this.findNavController()
@@ -194,7 +204,6 @@ class GamePlayFragment : Fragment() {
                 timer.cancel()
                 life--
                 unAnswered++
-
                 binding.nextBtn.isEnabled = true
                 binding.nextBtn.alpha = 1F
                 binding.gameLife.text = life.toString()
@@ -346,9 +355,7 @@ class GamePlayFragment : Fragment() {
             dbQuestion.add(qsDetails)
             dbQuestion.shuffle()
             playAnim(binding.questionText, 0, dbQuestion[index].question)
-            //insertBookmark()
 
-            //duplicateQSCheck()
             continue
 
         }
@@ -364,6 +371,19 @@ class GamePlayFragment : Fragment() {
                     BookmarkData(0L, dbQuestion[index].question, true, dbQuestion[index].answer)
                 if (!qsExists) {
                     dataSource.insert(bookmarkDetails)
+                }
+            }
+        }
+    }
+
+    private fun cancelBookmark(){
+        val application = requireNotNull(this.activity).application
+        val dataSource = BookmarkDatabase.getInstance(application).bookmarkDatabaseDao
+        uiScope.launch {
+            withContext(Dispatchers.IO) {
+                val qsExists = dataSource.exists(dbQuestion[index].question)!!
+                if (qsExists) {
+                    dataSource.cancelBookmark(dbQuestion[index].question)
                 }
             }
         }
