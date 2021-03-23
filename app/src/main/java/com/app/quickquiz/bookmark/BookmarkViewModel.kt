@@ -12,8 +12,8 @@ class BookmarkViewModel(private val db: BookmarkDao) : ViewModel() {
     private val viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-    private var _allBookmark = MutableLiveData<List<BookmarkData>>()
-    val allBookmark: LiveData<List<BookmarkData>>
+    private var _allBookmark = MutableLiveData<MutableList<BookmarkData>>()
+    val allBookmark: LiveData<MutableList<BookmarkData>>
         get() = _allBookmark
 
     fun getAllBookmarked(){

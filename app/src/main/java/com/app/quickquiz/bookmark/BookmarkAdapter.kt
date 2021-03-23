@@ -10,6 +10,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.app.quickquiz.R
 import com.app.quickquiz.bookmarkDB.BookmarkData
@@ -19,9 +21,11 @@ import kotlinx.coroutines.*
 
 class BookmarkAdapter(
     private val context: Context,
-    private val bookmarkData: List<BookmarkData>,
+    private val bookmarkData: MutableList<BookmarkData>,
 
-    ) : RecyclerView.Adapter<BookmarkAdapter.BookmarkViewModelHolder>() {
+    ) : ListAdapter<BookmarkData,BookmarkAdapter.BookmarkViewModelHolder>(BookmarkDiffCallback()){
+//RecyclerView.Adapter<BookmarkAdapter.BookmarkViewModelHolder>() {
+
     private val viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
@@ -40,10 +44,9 @@ class BookmarkAdapter(
         val data = bookmarkData[position]
         val qs = data.questions
         val ans = data.correctAns
-        val id = data.id.toString()
         holder.qsText.text = "Q: $qs"
         holder.qsAns.text = "Ans: $ans"
-        holder.qsNo.text = "$id."
+        //holder.qsNo.text = "$id."
 
         fun deleteBookmark(){
             val dataSource = BookmarkDatabase.getInstance(context).bookmarkDatabaseDao
@@ -53,34 +56,27 @@ class BookmarkAdapter(
                     if (qsExists) {
                         dataSource.cancelBookmark(data.questions)
                     }
+
                 }
             }
         }
 
         holder.deletebookmark.setOnClickListener {
-
             val builder = AlertDialog.Builder(context)
             builder.apply {
                 setCancelable(true)
                 setTitle("Do you want to Delete?")
                 setPositiveButton("Yes") { _, _ ->
                     deleteBookmark()
-
+                    bookmarkData.removeAt(holder.adapterPosition)
+                    notifyDataSetChanged()
                 }
                 setNegativeButton("No", null)
             }
             val dialog: AlertDialog = builder.create()
             dialog.show()
 
-
-
-
-
-
-
-
         }
-
     }
 
     override fun getItemCount(): Int {
@@ -88,17 +84,19 @@ class BookmarkAdapter(
     }
 
     inner class BookmarkViewModelHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var qsNo: TextView = itemView.findViewById(R.id.qsNo_txt)
+        //var qsNo: TextView = itemView.findViewById(R.id.qsNo_txt)
         var qsText: TextView = itemView.findViewById(R.id.bookmark_qs)
         var qsAns: TextView = itemView.findViewById(R.id.bookmark_qs_ans)
         var deletebookmark: ImageView = itemView.findViewById(R.id.delete_bookmark)
     }
 
+    class BookmarkDiffCallback : DiffUtil.ItemCallback<BookmarkData>() {
+        override fun areItemsTheSame(oldItem: BookmarkData, newItem: BookmarkData): Boolean {
+            return oldItem.id == newItem.id
+        }
 
-
-
-    private fun onQuiting() {
-
+        override fun areContentsTheSame(oldItem: BookmarkData, newItem: BookmarkData): Boolean {
+            return oldItem == newItem
+        }
     }
-
 }

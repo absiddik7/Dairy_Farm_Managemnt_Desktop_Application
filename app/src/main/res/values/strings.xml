@@ -50,6 +50,8 @@
     <string name="questions_0">Questions: 0</string>
     <string name="how_knowledgeable_are_you">How knowledgeable are you?</string>
     <string name="menu">Menu</string>
+     <string name="qs"><b>Q:</b> %d</string>
     <string name="floating_bookmark_button">floating bookmark button</string>
+
 
 </resources>

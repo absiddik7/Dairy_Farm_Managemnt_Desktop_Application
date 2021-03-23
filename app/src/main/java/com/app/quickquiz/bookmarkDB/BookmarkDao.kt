@@ -18,7 +18,7 @@ interface  BookmarkDao {
     fun exists(qs: String): Boolean?
 
     @Query("SELECT * from bookmark_table WHERE bookmarkQS == :isBookmarked ORDER BY id ASC")
-    fun getAllBookmark(isBookmarked:Boolean): List<BookmarkData>
+    fun getAllBookmark(isBookmarked:Boolean): MutableList<BookmarkData>
 
     @Query("DELETE FROM bookmark_table WHERE questions = :questions")
     suspend fun cancelBookmark(questions: String)
