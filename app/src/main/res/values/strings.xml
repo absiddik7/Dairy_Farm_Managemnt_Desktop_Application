@@ -52,6 +52,7 @@
     <string name="menu">Menu</string>
      <string name="qs"><b>Q:</b> %d</string>
     <string name="floating_bookmark_button">floating bookmark button</string>
+     <string name="game_rules">In this quiz, you keep getting general knowledge questions from different topics until you gave 3 wrong answers. One wrong answer cost one game life.<br/>There will be 20 seconds to answer each questions. Time up also cost one game life.</string>
 
 
-</resources>
+ </resources>

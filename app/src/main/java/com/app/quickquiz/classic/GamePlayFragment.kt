@@ -140,6 +140,7 @@ class GamePlayFragment : Fragment() {
 
         countDownTimer()
 
+
         bookmark = binding.bookmarkBtn
         bookmark.setOnClickListener{
             if(bookmark.isChecked){
@@ -189,6 +190,8 @@ class GamePlayFragment : Fragment() {
         binding.gamePlayQuitBtn.setOnClickListener {
             onQuiting()
         }
+
+
 
         return binding.root
     }
@@ -388,4 +391,7 @@ class GamePlayFragment : Fragment() {
             }
         }
     }
+
+
+
 }

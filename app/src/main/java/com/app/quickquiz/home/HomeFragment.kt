@@ -6,6 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.AppBarConfiguration
 import com.app.quickquiz.R
 import com.app.quickquiz.categories.CategoriesData
 import com.app.quickquiz.categories.CategoriesModel

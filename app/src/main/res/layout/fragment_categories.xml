@@ -19,7 +19,7 @@
 
         <ImageView
             android:onClick="@{() -> categoriesViewModel.onNavigateToHome()}"
-            android:id="@+id/imageView4"
+            android:id="@+id/back_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -30,15 +30,16 @@
             android:contentDescription="@string/back_button" />
 
         <TextView
-            style="@style/TitleText"
             android:id="@+id/categories_title"
+            style="@style/TitleText"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
+            android:gravity="center"
             android:text="@string/categories"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+            app:layout_constraintBottom_toBottomOf="@+id/back_btn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.413"
-            app:layout_constraintStart_toEndOf="@+id/imageView4"
+            app:layout_constraintStart_toEndOf="@+id/back_btn"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
