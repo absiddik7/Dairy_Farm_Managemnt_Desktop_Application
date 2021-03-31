@@ -22,6 +22,22 @@ class RulesViewModel : ViewModel() {
     val navigateToCategory: LiveData<Boolean?>
         get() = _navigateToCategory
 
+    fun onNavigateToMenuFragment() {
+        _navigateToMenuFragment.value = true
+    }
+
+    fun onNavigateToClassic() {
+        _navigateToClassic.value = true
+    }
+
+    fun onNavigateToArcade() {
+        _navigateToArcade.value = true
+    }
+
+    fun onNavigateToCategory() {
+        _navigateToCategory.value = true
+    }
+
 
     fun doneMenuFragmentNavigation() {
         _navigateToMenuFragment.value = null
@@ -40,20 +56,5 @@ class RulesViewModel : ViewModel() {
     }
 
 
-    fun onNavigateToMenuFragment() {
-        _navigateToMenuFragment.value = true
-    }
-
-    fun onNavigateToClassic() {
-        _navigateToClassic.value = true
-    }
-
-    fun onNavigateToArcade() {
-        _navigateToArcade.value = true
-    }
-
-    fun onNavigateToCategory() {
-        _navigateToCategory.value = true
-    }
 
 }

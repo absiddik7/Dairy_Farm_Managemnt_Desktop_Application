@@ -10,12 +10,26 @@ class MenuViewModel: ViewModel() {
     val navigateToRulesFragment: LiveData<Boolean?>
         get() = _navigateToRulesFragment
 
+    private val _navigateToAboutUsFragment = MutableLiveData<Boolean?>()
+    val navigateToAboutUsFragment: LiveData<Boolean?>
+        get() = _navigateToAboutUsFragment
+
+
+
     fun doneRulesFragmentNavigation() {
         _navigateToRulesFragment.value = null
     }
 
     fun onNavigateToRulesFragment() {
         _navigateToRulesFragment.value = true
+    }
+
+    fun doneAboutUsFragmentNavigation() {
+        _navigateToAboutUsFragment.value = null
+    }
+
+    fun onNavigateToAboutUsFragment() {
+        _navigateToAboutUsFragment.value = true
     }
 
 

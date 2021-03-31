@@ -12,6 +12,7 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:fitsSystemWindows="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/apple_white"
@@ -19,7 +20,6 @@
 
         <ImageView
             android:id="@+id/back_btn"
-            android:onClick="@{() -> rulesViewModel.onNavigateToMenuFragment()}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -153,7 +153,6 @@
                 <Button
                     android:id="@+id/rules_to_classic_btn"
                     android:layout_width="0dp"
-                    android:onClick="@{()-> rulesViewModel.onNavigateToClassic()}"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="16dp"
@@ -167,7 +166,6 @@
                 <Button
                     android:id="@+id/rules_to_arcade_btn"
                     android:layout_width="0dp"
-                    android:onClick="@{()-> rulesViewModel.onNavigateToArcade()}"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="16dp"
@@ -189,7 +187,6 @@
                     android:layout_marginBottom="16dp"
                     android:backgroundTint="@color/blue_sky"
                     android:text="@string/play"
-                    android:onClick="@{()-> rulesViewModel.onNavigateToCategory()}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/textView31"
                     app:layout_constraintStart_toStartOf="@+id/textView31"

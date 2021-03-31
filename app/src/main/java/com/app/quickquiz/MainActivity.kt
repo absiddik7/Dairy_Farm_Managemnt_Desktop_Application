@@ -23,21 +23,21 @@ class MainActivity : AppCompatActivity() {
 
         navController = Navigation.findNavController(this,R.id.myNavHostFragment)
 
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.homeFragment,
-                R.id.profileFragment,
-                R.id.bookmarkFragment,
-                R.id.menuFragment,
-            )
-        )
-        setupActionBarWithNavController(navController,appBarConfiguration)
+//        val appBarConfiguration = AppBarConfiguration(
+//            setOf(
+//                R.id.homeFragment,
+//                R.id.profileFragment,
+//                R.id.bookmarkFragment,
+//                R.id.menuFragment,
+//            )
+        //)
+        //setupActionBarWithNavController(navController,appBarConfiguration)
         binding.navView.setupWithNavController(navController)
 
     }
 
     private fun hideAppBar(){
-        supportActionBar!!.title = " " // hide text from actionbar
-        supportActionBar!!.hide() // hide text from actionbar
+        //supportActionBar!!.title = " " // hide text from actionbar
+        //supportActionBar!!.hide() // hide text from actionbar
     }
 }

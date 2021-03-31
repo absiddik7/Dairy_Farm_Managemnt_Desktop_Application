@@ -34,6 +34,12 @@ class MenuFragment : Fragment() {
             }
         })
 
+        menuViewModel.navigateToAboutUsFragment.observe(viewLifecycleOwner, {
+            it?.let {
+                this.findNavController().navigate(MenuFragmentDirections.actionMenuFragmentToAboutFragment())
+                menuViewModel.doneAboutUsFragmentNavigation()
+            }
+        })
 
 
 
