@@ -103,7 +103,7 @@ class ScoreFragment : Fragment() {
                             )
                         scoreViewModel.doneNavigateFromPlayAgain()
                     }
-                    "arcade" -> {
+                    "Arcade" -> {
                         this.findNavController()
                             .navigate(
                                 ScoreFragmentDirections.actionScoreFragmentToQuizFilterFragment()

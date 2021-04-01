@@ -7,19 +7,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.DecelerateInterpolator
+import android.widget.CheckBox
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.app.quickquiz.R
+import com.app.quickquiz.bookmarkDB.BookmarkData
+import com.app.quickquiz.bookmarkDB.BookmarkDatabase
 import com.app.quickquiz.classic.QuestionData
 import com.app.quickquiz.classic.QuestionDataJson
 import com.app.quickquiz.databinding.FragmentArcadeBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.*
 import org.json.JSONException
 import org.json.JSONObject
 import java.nio.charset.Charset
@@ -37,6 +42,9 @@ class ArcadeFragment : Fragment() {
     private var wrongAns = 0L
     private var index = 0
     private var count = 0
+    private val viewModelJob = Job()
+    private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
+    private lateinit var arcadeBookmark: CheckBox
 
 
     override fun onCreateView(
@@ -116,6 +124,20 @@ class ArcadeFragment : Fragment() {
             }
         }
 
+
+        arcadeBookmark = binding.arcadeBookmarkBtn
+        arcadeBookmark.setOnClickListener{
+            if(arcadeBookmark.isChecked){
+                insertBookmark()
+                Toast.makeText(requireContext(), "Added to Bookmarks", Toast.LENGTH_SHORT)
+                    .show()
+            } else{
+                cancelBookmark()
+                Toast.makeText(requireContext(), "Removed to Bookmarks", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        }
+
         binding.btnNext.setOnClickListener {
             binding.apply {
                 questionTxt.text = ""
@@ -125,6 +147,7 @@ class ArcadeFragment : Fragment() {
                 option4.text = ""
             }
 
+            arcadeBookmark.isChecked = false
             binding.btnNext.isEnabled = false
             binding.btnNext.alpha = 0.5F
             enableOption(true)
@@ -281,6 +304,35 @@ class ArcadeFragment : Fragment() {
             playAnim(binding.questionTxt, 0, dbQuestion[index].question)
 
             continue
+        }
+    }
+
+
+    private fun insertBookmark() {
+        val application = requireNotNull(this.activity).application
+        val dataSource = BookmarkDatabase.getInstance(application).bookmarkDatabaseDao
+        uiScope.launch {
+            withContext(Dispatchers.IO) {
+                val qsExists = dataSource.exists(dbQuestion[index].question)!!
+                val bookmarkDetails =
+                    BookmarkData(0L, dbQuestion[index].question, true, dbQuestion[index].answer)
+                if (!qsExists) {
+                    dataSource.insert(bookmarkDetails)
+                }
+            }
+        }
+    }
+
+    private fun cancelBookmark(){
+        val application = requireNotNull(this.activity).application
+        val dataSource = BookmarkDatabase.getInstance(application).bookmarkDatabaseDao
+        uiScope.launch {
+            withContext(Dispatchers.IO) {
+                val qsExists = dataSource.exists(dbQuestion[index].question)!!
+                if (qsExists) {
+                    dataSource.cancelBookmark(dbQuestion[index].question)
+                }
+            }
         }
     }
 }
