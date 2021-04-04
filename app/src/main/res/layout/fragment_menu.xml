@@ -73,7 +73,7 @@
             android:layout_height="50dp"
             android:layout_marginStart="8dp"
             android:gravity="center_vertical"
-            android:text="About Us"
+            android:text="About"
             android:textColor="@color/black"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="@+id/view8"
