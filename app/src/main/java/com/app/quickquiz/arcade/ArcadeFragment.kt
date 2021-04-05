@@ -77,15 +77,15 @@ class ArcadeFragment : Fragment() {
                         "Sports",
                         "Universe")
 
-                for (fileName in cateNameFile) {
-                    val myUsersJSONFile = requireContext().assets.open("${fileName}.json")
+                //for (fileName in cateNameFile) {
+                    val myUsersJSONFile = requireContext().assets.open("Random.json")
                     val size = myUsersJSONFile.available()
                     val buffer = ByteArray(size)
                     myUsersJSONFile.read(buffer)
                     myUsersJSONFile.close()
                     cateName = String(buffer, charset)
                     getDataFromJson(cateName)
-                }
+                //}
             } else {
                 //token = categoryName
                 val jsonFile = "${categoryName}.json"

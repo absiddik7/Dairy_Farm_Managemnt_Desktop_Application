@@ -36,7 +36,7 @@ class GamePlayFragment : Fragment() {
     private lateinit var timer: CountDownTimer
     private val args: GamePlayFragmentArgs by navArgs()
     private lateinit var gamePlayViewModel: GamePlayViewModel
-    private var index = 0
+    private var index = 10
     private var count = 0
     private var rightAns = 0L
     private var wrongAns = 0L
@@ -74,6 +74,8 @@ class GamePlayFragment : Fragment() {
         optionContainer = binding.optionContainer
         binding.gameLife.text = life.toString()
 
+        countDownTimer()
+
         dbQuestion = ArrayList()
         qsId = ArrayList()
 
@@ -83,23 +85,15 @@ class GamePlayFragment : Fragment() {
         try {
             if (categoryName == "Random") {
                 token = "Classic"
-                val cateNameFile =
-                    listOf("Ordinary.json",
-                        "Geography.json",
-                        "History.json",
-                        "Science.json",
-                        "Sports.json",
-                        "Universe.json")
 
-                for (fileName in cateNameFile) {
-                    val myUsersJSONFile = requireContext().assets.open(fileName)
-                    val size = myUsersJSONFile.available()
-                    val buffer = ByteArray(size)
-                    myUsersJSONFile.read(buffer)
-                    myUsersJSONFile.close()
-                    cateName = String(buffer, charset)
-                    getDataFromJson(cateName)
-                }
+                val myUsersJSONFile = requireContext().assets.open("Random.json")
+                val size = myUsersJSONFile.available()
+                val buffer = ByteArray(size)
+                myUsersJSONFile.read(buffer)
+                myUsersJSONFile.close()
+                cateName = String(buffer, charset)
+                getDataFromJson(cateName)
+
             } else {
                 token = categoryName
                 val jsonFile = "${categoryName}.json"
@@ -115,6 +109,7 @@ class GamePlayFragment : Fragment() {
         } catch (e: JSONException) {
             e.printStackTrace()
         }
+
 
         for (i in 0..3) {
             optionContainer.getChildAt(i).setOnClickListener {
@@ -138,7 +133,7 @@ class GamePlayFragment : Fragment() {
             }
         }
 
-        countDownTimer()
+
 
 
         bookmark = binding.bookmarkBtn
@@ -356,12 +351,33 @@ class GamePlayFragment : Fragment() {
 
             val qsDetails = QuestionDataJson(id, qs, option1, option2, option3, option4, answer)
             dbQuestion.add(qsDetails)
-            dbQuestion.shuffle()
-            playAnim(binding.questionText, 0, dbQuestion[index].question)
+            //dbQuestion.shuffle()
+            //playAnim(binding.questionText, 0, dbQuestion[0].question)
 
             continue
 
         }
+        if(index < dbQuestion.size){
+            playAnim(binding.questionText, 0, dbQuestion[index].question)
+        } else{
+            endOfQSBankDialog()
+        }
+
+
+    }
+
+    private fun endOfQSBankDialog(){
+        timer.cancel()
+        val builder = AlertDialog.Builder(requireActivity())
+        builder.apply{
+            setCancelable(false)
+            setMessage("Classic mood run out of new questions.New questions will add very soon. Please stay with us.")
+            setPositiveButton("Ok"){_,_->
+                findNavController().navigate(GamePlayFragmentDirections.actionGamePlayFragmentToHomeFragment())
+            }
+        }
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
     }
 
     private fun insertBookmark() {

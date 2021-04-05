@@ -1,0 +1,94 @@
+{
+  "questionsData": [
+    {
+      "id": 1,
+      "qs": "Which nuts are used in marzipan?",
+      "option1": "Date",
+      "option2": "Apple",
+      "option3": "Rice",
+      "option4": "Almonds",
+      "answer": "Almonds"
+    },
+    {
+      "id": 2,
+      "qs": "What is the capital of Chile?",
+      "option1": "Russia",
+      "option2": "Canada",
+      "option3": "Santiago",
+      "option4": "Dhaka",
+      "answer": "Santiago"
+    },
+    {
+      "id": 3,
+      "qs": "Alberta is a province of which country?",
+      "option1": "Canada",
+      "option2": "Japan",
+      "option3": "China",
+      "option4": "India",
+      "answer": "Canada"
+    },
+    {
+      "id": 4,
+      "qs": "What is the longest river in the world?",
+      "option1": "Padma",
+      "option2": "River Nile",
+      "option3": "Jamuna",
+      "option4": "Nill Nod",
+      "answer": "River Nile"
+    },
+    {
+      "id": 5,
+      "qs": "What is the hottest continent on Earth?",
+      "option1": "Europe",
+      "option2": "US",
+      "option3": "Asia",
+      "option4": "Africa",
+      "answer": "Africa"
+    },
+    {
+      "id": 6,
+      "qs": "What did the Romans call Scotland?",
+      "option1": "Norwegian",
+      "option2": "Caledonia",
+      "option3": "Cambridge",
+      "option4": "Smallpox",
+      "answer": "Caledonia"
+    },
+    {
+      "id": 7,
+      "qs": "Who was Henry VIIIs last wife?",
+      "option1": "Catherine Parr",
+      "option2": "Norwegian",
+      "option3": "Sir Walter Raleigh",
+      "option4": "Caledonia",
+      "answer": "Catherine Parr"
+    },
+    {
+      "id": 8,
+      "qs": "How many Members of Parliament (MPs) are there?",
+      "option1": "650",
+      "option2": "120",
+      "option3": "456",
+      "option4": "312",
+      "answer": "650"
+    },
+    {
+      "id": 9,
+      "qs": "How long does Prime Minister’s Questions last?",
+      "option1": "30 minutes",
+      "option2": "10 minutes",
+      "option3": "50 minutes",
+      "option4": "20 minutes",
+      "answer": "30 minutes"
+    },
+    {
+      "id": 10,
+      "qs": "Who is Donald Trump's vice president?",
+      "option1": "Perceval",
+      "option2": "Dorothea",
+      "option3": "Whips",
+      "option4": "Mike Pence",
+      "answer": "Mike Pence"
+    }
+  ]
+}
