@@ -22,7 +22,6 @@ import java.nio.charset.Charset
 class CategoriesFragment : Fragment() {
     private lateinit var binding: FragmentCategoriesBinding
     private lateinit var categoriesViewModel: CategoriesViewModel
-    private lateinit var database: FirebaseFirestore
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -69,7 +68,7 @@ class CategoriesFragment : Fragment() {
             e.printStackTrace()
         }
 
-        binding.categoriesRecyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
+        binding.categoriesRecyclerView.layoutManager = GridLayoutManager(requireContext(), 3)
         val adapter = CategoriesAdapter(requireContext(), categories)
         binding.categoriesRecyclerView.adapter = adapter
 

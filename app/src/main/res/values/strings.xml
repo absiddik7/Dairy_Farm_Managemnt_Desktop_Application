@@ -41,7 +41,7 @@
     <string name="play_again">Play Again</string>
     <string name="wrong">Wrong</string>
     <string name="arcade_rules">Play 60 seconds and try to answer as many questions as you can.</string>
-    <string name="share_score" formatted="false">I answered %d questions correctly with %d%%  accuracy on Quick Quiz today!\nTo enhance your knowledge, try this Quick Quiz app: https://www.wikipedia.org/</string>
+    <string name="share_score" formatted="false">I answered %d questions correctly with %d%%  accuracy on Quick Quiz today!\nTo enhance your knowledge, try Quick Quiz app: </string>
     <string name="your_performance">Your Performance</string>
     <string name="answered">Answered</string>
     <string name="correct_answer">Correct Answer</string>

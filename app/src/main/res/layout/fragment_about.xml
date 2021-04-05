@@ -64,7 +64,7 @@
             app:layout_constraintTop_toBottomOf="@+id/categories_title" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/feedback_btn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="78dp"
@@ -103,17 +103,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView35" />
+            app:layout_constraintTop_toBottomOf="@+id/app_Version_txt" />
 
         <TextView
-            android:id="@+id/textView35"
+            android:id="@+id/app_Version_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
-            android:text="Version 1.7"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView7" />
+            app:layout_constraintTop_toBottomOf="@+id/textView7"
+            tools:text="Version 1.7" />
 
         <TextView
             android:id="@+id/textView36"

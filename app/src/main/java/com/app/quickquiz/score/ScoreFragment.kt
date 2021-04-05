@@ -1,17 +1,20 @@
 package com.app.quickquiz.score
 
 import android.annotation.SuppressLint
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.app.ShareCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.app.quickquiz.BuildConfig
 import com.app.quickquiz.R
 import com.app.quickquiz.database.ScoreDatabase
 import com.app.quickquiz.databinding.FragmentScoreBinding
@@ -25,7 +28,6 @@ class ScoreFragment : Fragment() {
     private var rightAns: Long = 0L
     private var progress: Double = 0.0
 
-    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -122,19 +124,18 @@ class ScoreFragment : Fragment() {
         })
 
         binding.shareBtn.setOnClickListener {
-            shareScore()
+            try {
+                val appLink = "https://play.google.com/store/apps/details?id=${BuildConfig.APPLICATION_ID}".trimIndent()
+                val msg = getString(R.string.share_score,rightAns, progress.toInt())
+                val shareIntent = Intent(Intent.ACTION_SEND)
+                shareIntent.putExtra(Intent.EXTRA_TEXT,"$msg $appLink")
+                shareIntent.type = "text/plain"
+                startActivity(Intent.createChooser(shareIntent, "choose one"))
+            } catch (e: ActivityNotFoundException){
+                Toast.makeText(requireContext(), "Error occurred", Toast.LENGTH_SHORT).show()
+            }
         }
         return binding.root
     }
 
-    private fun getShareIntent(): Intent {
-        return ShareCompat.IntentBuilder.from(requireActivity())
-            .setText(getString(R.string.share_score, rightAns, progress.toInt()))
-            .setType("text/plain")
-            .intent
-    }
-
-    private fun shareScore() {
-        startActivity(getShareIntent())
-    }
 }
