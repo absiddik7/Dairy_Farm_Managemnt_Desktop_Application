@@ -1,7 +1,7 @@
 {
   "questionsData": [
     {
-      "id": 1,
+
       "qs": "What is the name of person which controls a football match?",
       "option1": "Referee",
       "option2": "Umpire",
@@ -10,7 +10,7 @@
       "answer": "Referee"
     },
     {
-      "id": 2,
+
       "qs": "With which game does FIFA World Cup Trophy is associated?",
       "option1": "Tennis",
       "option2": "Football",
@@ -19,7 +19,7 @@
       "answer": "Football"
     },
     {
-      "id": 3,
+
       "qs": "Which country is going to host the 2021 Asian Games?",
       "option1": "South Korea",
       "option2": "Japan",

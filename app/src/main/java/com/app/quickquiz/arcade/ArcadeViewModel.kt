@@ -1,4 +1,4 @@
-package com.app.quickquiz.classic
+package com.app.quickquiz.arcade
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -6,10 +6,10 @@ import androidx.lifecycle.ViewModel
 import com.app.quickquiz.database.ScoreDatabaseDao
 import kotlinx.coroutines.*
 
-class GamePlayViewModel(
+class ArcadeViewModel(
     private val categoryName: String,
     private val db: ScoreDatabaseDao
-) : ViewModel() {
+): ViewModel() {
 
     private val viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
@@ -18,7 +18,7 @@ class GamePlayViewModel(
     val indexNo: LiveData<Int>
         get() = _indexNo
 
-    fun getIndexNo() {
+    fun getIndex() {
         uiScope.launch {
             withContext(Dispatchers.IO) {
                 val categoryExistence = db.exists(categoryName)!!
@@ -29,5 +29,7 @@ class GamePlayViewModel(
             }
         }
     }
+
+
 
 }

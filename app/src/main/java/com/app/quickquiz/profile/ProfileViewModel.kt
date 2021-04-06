@@ -139,15 +139,10 @@ class ProfileViewModel(private val db: ScoreDatabaseDao) : ViewModel() {
     fun getAllScores(){
         uiScope.launch {
             withContext(Dispatchers.IO) {
-
-                _allScores.postValue(db.getAllScore(0))
+                _allScores.postValue(db.getAllScore(2131165351)) // ic_notifications = 2131165351
             }
         }
     }
 
-    fun permissions(it:Boolean){
-        if(it){
-            getClassicScore()
-        }
-    }
+
 }

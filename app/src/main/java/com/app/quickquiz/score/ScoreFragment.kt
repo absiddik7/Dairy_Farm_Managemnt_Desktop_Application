@@ -40,10 +40,11 @@ class ScoreFragment : Fragment() {
         val wrongAns = args.wrongAns
         val unAns = args.unAnswered
         val totalQs = rightAns + wrongAns + unAns
+        val indexNo = args.index
 
         val application = requireNotNull(this.activity).application
         val dataSource = ScoreDatabase.getInstance(application).scoreDatabaseDao
-        val viewModelFactory = ScoreViewModelFactory(dataSource,token,rightAns,wrongAns)
+        val viewModelFactory = ScoreViewModelFactory(dataSource,token,rightAns,wrongAns,indexNo)
 
         scoreViewModel = ViewModelProvider(this,viewModelFactory).get(ScoreViewModel::class.java)
         binding.scoreViewModel = scoreViewModel
@@ -98,10 +99,10 @@ class ScoreFragment : Fragment() {
         scoreViewModel.navigateFromPlayAgain.observe(viewLifecycleOwner, {
             it?.let {
                 when (token) {
-                    "classic" -> {
+                    "Classic" -> {
                         this.findNavController()
                             .navigate(
-                                ScoreFragmentDirections.actionScoreFragmentToGamePlayFragment("Random")
+                                ScoreFragmentDirections.actionScoreFragmentToGamePlayFragment("Classic")
                             )
                         scoreViewModel.doneNavigateFromPlayAgain()
                     }

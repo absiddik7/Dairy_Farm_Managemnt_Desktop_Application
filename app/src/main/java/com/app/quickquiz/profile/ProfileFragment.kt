@@ -69,7 +69,6 @@ class ProfileFragment : Fragment() {
 
         }
 
-        profileViewModel.permissions(true)
 
         profileViewModel.apply {
 

@@ -4,11 +4,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.app.quickquiz.bookmarkDB.BookmarkDao
 import com.app.quickquiz.bookmarkDB.BookmarkData
+import com.app.quickquiz.database.ScoreDatabaseDao
 
 
 class GamePlayViewModelFactory(
     private val categoryName: String,
-    private val dataSource:BookmarkDao
+    private val dataSource: ScoreDatabaseDao
     //private val bookmarkDetails: BookmarkData
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {

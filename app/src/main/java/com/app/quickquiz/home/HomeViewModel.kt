@@ -23,7 +23,7 @@ class HomeViewModel(
             withContext(Dispatchers.IO) {
 
                 val cateNameFile =
-                    listOf("Ordinary", "Geography",
+                    listOf("Classic","Arcade","Ordinary", "Geography",
                         "History", "Science",
                         "Sports", "Universe")
 
@@ -31,11 +31,34 @@ class HomeViewModel(
                     val existsOrNot = db.exists(fileName)!!
                     if (!existsOrNot) {
                         when (fileName) {
+                            "Classic" -> {
+                                val initialSore =
+                                    CategoriesScore(0,
+                                        fileName,
+                                        R.drawable.ic_notifications,
+                                        0,
+                                        0,
+                                        0,
+                                        0)
+                                insert(initialSore)
+                            }
+                            "Arcade" -> {
+                                val initialSore =
+                                    CategoriesScore(0,
+                                        fileName,
+                                        R.drawable.ic_notifications,
+                                        0,
+                                        0,
+                                        0,
+                                        0)
+                                insert(initialSore)
+                            }
                             "Ordinary" -> {
                                 val initialSore =
                                     CategoriesScore(0,
                                         fileName,
                                         R.drawable.ic_rules,
+                                        0,
                                         0,
                                         0,
                                         0)
@@ -48,6 +71,7 @@ class HomeViewModel(
                                         R.drawable.ic_heart,
                                         0,
                                         0,
+                                        0,
                                         0)
                                 insert(initialSore)
                             }
@@ -56,6 +80,7 @@ class HomeViewModel(
                                     CategoriesScore(0,
                                         fileName,
                                         R.drawable.ic_history,
+                                        0,
                                         0,
                                         0,
                                         0)
@@ -68,6 +93,7 @@ class HomeViewModel(
                                         R.drawable.ic_chemistry_category,
                                         0,
                                         0,
+                                        0,
                                         0)
                                 insert(initialSore)
                             }
@@ -78,6 +104,7 @@ class HomeViewModel(
                                         R.drawable.ic_sports,
                                         0,
                                         0,
+                                        0,
                                         0)
                                 insert(initialSore)
                             }
@@ -86,6 +113,7 @@ class HomeViewModel(
                                     CategoriesScore(0,
                                         fileName,
                                         R.drawable.ic_bookmark,
+                                        0,
                                         0,
                                         0,
                                         0)

@@ -82,12 +82,22 @@ class QuizFilterFragment : Fragment() {
 
         quizFilterViewModel.navigateToTimeTrial.observe(viewLifecycleOwner, { arcade ->
             arcade?.let {
-                this.findNavController()
-                    .navigate(
-                        QuizFilterFragmentDirections.actionQuizFilterFragmentToTimeTrialFragment(
-                            categoryName, 1
+                if(categoryName == "Random"){
+                    this.findNavController()
+                        .navigate(
+                            QuizFilterFragmentDirections.actionQuizFilterFragmentToTimeTrialFragment(
+                                "Arcade", 1
+                            )
                         )
-                    )
+                } else{
+                    this.findNavController()
+                        .navigate(
+                            QuizFilterFragmentDirections.actionQuizFilterFragmentToTimeTrialFragment(
+                                categoryName, 1
+                            )
+                        )
+                }
+
                 quizFilterViewModel.doneTimeTrialNavigation()
             }
         })

@@ -1,7 +1,6 @@
 {
   "questionsData": [
     {
-      "id": 1,
       "qs": "Which nuts are used in marzipan?",
       "option1": "Date",
       "option2": "Apple",
@@ -10,7 +9,6 @@
       "answer": "Almonds"
     },
     {
-      "id": 2,
       "qs": "What is the capital of Chile?",
       "option1": "Russia",
       "option2": "Canada",
@@ -19,7 +17,6 @@
       "answer": "Santiago"
     },
     {
-      "id": 3,
       "qs": "Alberta is a province of which country?",
       "option1": "Canada",
       "option2": "Japan",
@@ -28,7 +25,6 @@
       "answer": "Canada"
     },
     {
-      "id": 4,
       "qs": "What is the longest river in the world?",
       "option1": "Padma",
       "option2": "River Nile",
@@ -37,7 +33,6 @@
       "answer": "River Nile"
     },
     {
-      "id": 5,
       "qs": "What is the hottest continent on Earth?",
       "option1": "Europe",
       "option2": "US",
@@ -46,7 +41,6 @@
       "answer": "Africa"
     },
     {
-      "id": 6,
       "qs": "What did the Romans call Scotland?",
       "option1": "Norwegian",
       "option2": "Caledonia",
@@ -55,7 +49,6 @@
       "answer": "Caledonia"
     },
     {
-      "id": 7,
       "qs": "Who was Henry VIIIs last wife?",
       "option1": "Catherine Parr",
       "option2": "Norwegian",
@@ -64,7 +57,6 @@
       "answer": "Catherine Parr"
     },
     {
-      "id": 8,
       "qs": "How many Members of Parliament (MPs) are there?",
       "option1": "650",
       "option2": "120",
@@ -73,7 +65,6 @@
       "answer": "650"
     },
     {
-      "id": 9,
       "qs": "How long does Prime Minister’s Questions last?",
       "option1": "30 minutes",
       "option2": "10 minutes",
@@ -82,13 +73,48 @@
       "answer": "30 minutes"
     },
     {
-      "id": 10,
       "qs": "Who is Donald Trump's vice president?",
       "option1": "Perceval",
       "option2": "Dorothea",
       "option3": "Whips",
       "option4": "Mike Pence",
       "answer": "Mike Pence"
+    },
+    {
+
+      "qs": "What is the capital city of Bangladesh?",
+      "option1": "Rajshahi",
+      "option2": "Dhaka",
+      "option3": "Rangpur",
+      "option4": "Comilla",
+      "answer": "Dhaka"
+    },
+    {
+
+      "qs": "Who am I?",
+      "option1": "Fahim",
+      "option2": "Sajib",
+      "option3": "Sadia",
+      "option4": "Flora",
+      "answer": "Sajib"
+    },
+    {
+
+      "qs": "What is apple?",
+      "option1": "Fruit",
+      "option2": "Animal",
+      "option3": "Tree",
+      "option4": "House",
+      "answer": "Fruit"
+    },
+    {
+
+      "qs": "How many letters in A to Z?",
+      "option1": "35",
+      "option2": "26",
+      "option3": "36",
+      "option4": "21",
+      "answer": "26"
     }
   ]
 }

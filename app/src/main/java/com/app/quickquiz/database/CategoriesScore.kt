@@ -25,4 +25,7 @@ data class CategoriesScore(
     @ColumnInfo(name = "high_score")
     val highScore: Long,
 
+    @ColumnInfo(name = "indexNo")
+    val indexNo: Int,
+
     )

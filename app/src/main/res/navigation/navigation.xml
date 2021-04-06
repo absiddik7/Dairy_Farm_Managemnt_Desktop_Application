@@ -187,6 +187,9 @@
             android:id="@+id/action_scoreFragment_to_quizFilterFragment"
             app:destination="@id/quizFilterFragment"
             app:popUpTo="@id/homeFragment" />
+        <argument
+            android:name="index"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/aboutFragment"

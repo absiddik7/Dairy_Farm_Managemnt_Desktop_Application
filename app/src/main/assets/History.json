@@ -1,7 +1,6 @@
 {
   "questionsData": [
     {
-      "id": 1,
       "qs": "How long was the Hundred Years' War?",
       "option1": "100 years",
       "option2": "116 years",
@@ -10,7 +9,6 @@
       "answer": "116 years"
     },
     {
-      "id": 2,
       "qs": "Who assassinated Abraham Lincoln?",
       "option1": "Seymour",
       "option2": "Admiral Donitz",

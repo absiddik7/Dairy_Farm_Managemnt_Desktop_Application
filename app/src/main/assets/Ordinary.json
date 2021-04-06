@@ -1,7 +1,6 @@
 {
   "questionsData": [
     {
-      "id": 1,
       "qs": "The first metal used by the man was?",
       "option1": "Iron",
       "option2": "Copper",
@@ -10,7 +9,6 @@
       "answer": "Copper"
     },
     {
-      "id": 2,
       "qs": "Which one of the following is a fast growing tree ?",
       "option1": "Teak",
       "option2": "Eucalyptus",
@@ -19,7 +17,6 @@
       "answer": "Eucalyptus"
     },
     {
-      "id": 3,
       "qs": "What's the biggest animal in the world?",
       "option1": "Elephant",
       "option2": "Whale",

@@ -48,7 +48,7 @@ class HomeFragment : Fragment() {
         homeViewModel.navigateToQuickQuiz.observe(viewLifecycleOwner, { quickPlay ->
             quickPlay?.let {
                 this.findNavController().navigate(
-                    HomeFragmentDirections.actionHomeFragmentToGamePlayFragment("Random")
+                    HomeFragmentDirections.actionHomeFragmentToGamePlayFragment("Classic")
                 )
                 homeViewModel.doneQuickPlayNavigation()
             }

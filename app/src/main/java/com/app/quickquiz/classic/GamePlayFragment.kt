@@ -20,6 +20,7 @@ import androidx.navigation.fragment.navArgs
 import com.app.quickquiz.R
 import com.app.quickquiz.bookmarkDB.BookmarkData
 import com.app.quickquiz.bookmarkDB.BookmarkDatabase
+import com.app.quickquiz.database.ScoreDatabase
 import com.app.quickquiz.databinding.FragmentGamePlayBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.*
@@ -31,12 +32,11 @@ class GamePlayFragment : Fragment() {
 
     private lateinit var binding: FragmentGamePlayBinding
     private lateinit var dbQuestion: ArrayList<QuestionDataJson>
-    private lateinit var qsId: ArrayList<BookmarkData>
     private lateinit var optionContainer: LinearLayout
     private lateinit var timer: CountDownTimer
     private val args: GamePlayFragmentArgs by navArgs()
     private lateinit var gamePlayViewModel: GamePlayViewModel
-    private var index = 10
+    private var index = 0
     private var count = 0
     private var rightAns = 0L
     private var wrongAns = 0L
@@ -62,28 +62,35 @@ class GamePlayFragment : Fragment() {
         val navBar: BottomNavigationView = requireActivity().findViewById(R.id.navView)
         navBar.visibility = View.GONE
 
+        categoryName = args.catName
+        optionContainer = binding.optionContainer
+        binding.gameLife.text = life.toString()
+
+
         val application = requireNotNull(this.activity).application
-        val dataSource = BookmarkDatabase.getInstance(application).bookmarkDatabaseDao
+        val dataSource = ScoreDatabase.getInstance(application).scoreDatabaseDao
         val viewModelFactory = GamePlayViewModelFactory(categoryName, dataSource)
 
         gamePlayViewModel =
             ViewModelProvider(this, viewModelFactory).get(GamePlayViewModel::class.java)
         binding.lifecycleOwner = this
 
-        categoryName = args.catName
-        optionContainer = binding.optionContainer
-        binding.gameLife.text = life.toString()
-
-        countDownTimer()
+        gamePlayViewModel.getIndexNo()
+        gamePlayViewModel.indexNo.observe(viewLifecycleOwner, { it ->
+            it?.let {
+                index = it
+            }
+        })
 
         dbQuestion = ArrayList()
-        qsId = ArrayList()
+        dbQuestion.shuffle()
+        countDownTimer()
 
-        var cateName: String?
+        val cateName: String?
         val charset: Charset = Charsets.UTF_8
 
         try {
-            if (categoryName == "Random") {
+            if (categoryName == "Classic") {
                 token = "Classic"
 
                 val myUsersJSONFile = requireContext().assets.open("Random.json")
@@ -133,9 +140,6 @@ class GamePlayFragment : Fragment() {
             }
         }
 
-
-
-
         bookmark = binding.bookmarkBtn
         bookmark.setOnClickListener{
             if(bookmark.isChecked){
@@ -175,7 +179,8 @@ class GamePlayFragment : Fragment() {
                             rightAns,
                             wrongAns,
                             unAnswered,
-                            token
+                            token,
+                            index
                         )
                     )
                 timer.cancel()
@@ -185,8 +190,6 @@ class GamePlayFragment : Fragment() {
         binding.gamePlayQuitBtn.setOnClickListener {
             onQuiting()
         }
-
-
 
         return binding.root
     }
@@ -213,7 +216,8 @@ class GamePlayFragment : Fragment() {
                                 rightAns,
                                 wrongAns,
                                 unAnswered,
-                                token
+                                token,
+                                index
                             )
                         )
                 }
@@ -291,7 +295,8 @@ class GamePlayFragment : Fragment() {
                             rightAns,
                             wrongAns,
                             unAnswered,
-                            token
+                            token,
+                            index
                         )
                     )
             }
@@ -320,7 +325,8 @@ class GamePlayFragment : Fragment() {
                     rightAns,
                     wrongAns,
                     unAnswered,
-                    token
+                    token,
+                    index
                 ))
             }
             setNegativeButton("No", null)
@@ -340,8 +346,6 @@ class GamePlayFragment : Fragment() {
         val qsData = obj.getJSONArray("questionsData")
         for (i in 0 until qsData.length()) {
             val qsObj = qsData.getJSONObject(i)
-
-            val id = qsObj.getInt("id")
             val qs = qsObj.getString("qs")
             val option1 = qsObj.getString("option1")
             val option2 = qsObj.getString("option2")
@@ -349,20 +353,26 @@ class GamePlayFragment : Fragment() {
             val option4 = qsObj.getString("option4")
             val answer = qsObj.getString("answer")
 
-            val qsDetails = QuestionDataJson(id, qs, option1, option2, option3, option4, answer)
+            val qsDetails = QuestionDataJson(qs, option1, option2, option3, option4, answer)
             dbQuestion.add(qsDetails)
             //dbQuestion.shuffle()
-            //playAnim(binding.questionText, 0, dbQuestion[0].question)
 
             continue
-
-        }
-        if(index < dbQuestion.size){
-            playAnim(binding.questionText, 0, dbQuestion[index].question)
-        } else{
-            endOfQSBankDialog()
         }
 
+        gamePlayViewModel.indexNo.observe(viewLifecycleOwner, { it ->
+            it?.let {
+                if(it==0){
+                    dbQuestion.shuffle()
+                }
+                index = it
+                if (index < dbQuestion.size) {
+                    playAnim(binding.questionText, 0, dbQuestion[index].question)
+                } else {
+                    endOfQSBankDialog()
+                }
+            }
+        })
 
     }
 
@@ -371,7 +381,7 @@ class GamePlayFragment : Fragment() {
         val builder = AlertDialog.Builder(requireActivity())
         builder.apply{
             setCancelable(false)
-            setMessage("Classic mood run out of new questions.New questions will add very soon. Please stay with us.")
+            setMessage("No new questions.New questions will add very soon. Please stay with us.")
             setPositiveButton("Ok"){_,_->
                 findNavController().navigate(GamePlayFragmentDirections.actionGamePlayFragmentToHomeFragment())
             }
@@ -407,7 +417,5 @@ class GamePlayFragment : Fragment() {
             }
         }
     }
-
-
 
 }

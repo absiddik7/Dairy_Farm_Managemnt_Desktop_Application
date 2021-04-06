@@ -11,9 +11,10 @@ class ScoreViewModel(
     private val db: ScoreDatabaseDao,
     private val categoryName: String,
     private val rightScore: Long,
-    private val wrongScore: Long
+    private val wrongScore: Long,
+    private val indexNo: Int,
 
-) : ViewModel() {
+    ) : ViewModel() {
 
     private val viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
@@ -27,7 +28,13 @@ class ScoreViewModel(
 
                 if (!existsOrNot) {
                     val newScore =
-                        CategoriesScore(0, categoryName, catImg ,rightScore, wrongScore, highScore)
+                        CategoriesScore(0,
+                            categoryName,
+                            catImg,
+                            rightScore,
+                            wrongScore,
+                            highScore,
+                            indexNo)
                     insert(newScore)
                 } else {
                     onUpdateScore()
@@ -48,7 +55,7 @@ class ScoreViewModel(
                     highScore = rightScore
                 }
 
-                db.updateScore(categoryName, correctScore, wrongScore, highScore)
+                db.updateScore(categoryName, correctScore, wrongScore, highScore, indexNo)
             }
         }
     }

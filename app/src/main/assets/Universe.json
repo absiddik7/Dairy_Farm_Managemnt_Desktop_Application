@@ -1,7 +1,7 @@
 {
   "questionsData": [
     {
-      "id": 1,
+
       "qs": "When was Sun born?",
       "option1": "roughly 4.6 billion years ago",
       "option2": "roughly 4.7 billion years ago",
@@ -10,7 +10,7 @@
       "answer": "roughly 4.6 billion years ago"
     },
     {
-      "id": 2,
+
       "qs": "How much time does sun rays take to reach earth?",
       "option1": "8 minutes",
       "option2": "9 minutes",
@@ -19,7 +19,7 @@
       "answer": "8 minutes"
     },
     {
-      "id": 3,
+
       "qs": "Which planet is nearest to the earth?",
       "option1": "MERCURY",
       "option2": "Jupiter",

@@ -14,16 +14,17 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.app.quickquiz.R
 import com.app.quickquiz.bookmarkDB.BookmarkData
 import com.app.quickquiz.bookmarkDB.BookmarkDatabase
-import com.app.quickquiz.classic.QuestionData
+import com.app.quickquiz.classic.GamePlayFragmentDirections
 import com.app.quickquiz.classic.QuestionDataJson
+import com.app.quickquiz.database.ScoreDatabase
 import com.app.quickquiz.databinding.FragmentArcadeBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.*
 import org.json.JSONException
 import org.json.JSONObject
@@ -33,8 +34,8 @@ class ArcadeFragment : Fragment() {
 
     private lateinit var binding: FragmentArcadeBinding
     private val args: ArcadeFragmentArgs by navArgs()
+    private lateinit var arcadeViewModel: ArcadeViewModel
     private lateinit var dbQuestion: ArrayList<QuestionDataJson>
-    private lateinit var qsIndex: ArrayList<String>
     private lateinit var optionContainer: LinearLayout
     private lateinit var timer: CountDownTimer
     private var milliSeconds: Long = 0
@@ -58,34 +59,44 @@ class ArcadeFragment : Fragment() {
         navBar.visibility = View.GONE
 
         val categoryName = args.categoryName
+        if(categoryName == "Random"){
+            val k = "Arcade"
+        }
         milliSeconds = args.minutes * 60000L
         optionContainer = binding.allOption
 
-        dbQuestion = ArrayList()
-        qsIndex = ArrayList()
+        val application = requireNotNull(this.activity).application
+        val db = ScoreDatabase.getInstance(application).scoreDatabaseDao
+        val arcadeViewModelFactory = ArcadeViewModelFactory(categoryName, db)
+        arcadeViewModel =
+            ViewModelProvider(this, arcadeViewModelFactory).get(ArcadeViewModel::class.java)
+        binding.lifecycleOwner = this
 
-        var cateName: String?
+        arcadeViewModel.getIndex()
+        arcadeViewModel.indexNo.observe(viewLifecycleOwner, { it ->
+            it?.let {
+                index = it
+            }
+
+        })
+
+        dbQuestion = ArrayList()
+        dbQuestion.shuffle()
+
+        countDownTimer()
+
+        val cateName: String?
         val charset: Charset = Charsets.UTF_8
         try {
-            if (categoryName == "Random") {
-                //token = "Classic"
-                val cateNameFile =
-                    listOf("Ordinary",
-                        "Geography",
-                        "History",
-                        "Science",
-                        "Sports",
-                        "Universe")
+            if (categoryName == "Arcade") {
 
-                //for (fileName in cateNameFile) {
-                    val myUsersJSONFile = requireContext().assets.open("Random.json")
-                    val size = myUsersJSONFile.available()
-                    val buffer = ByteArray(size)
-                    myUsersJSONFile.read(buffer)
-                    myUsersJSONFile.close()
-                    cateName = String(buffer, charset)
+                val myUsersJSONFile = requireContext().assets.open("Random.json")
+                val size = myUsersJSONFile.available()
+                val buffer = ByteArray(size)
+                myUsersJSONFile.read(buffer)
+                myUsersJSONFile.close()
+                cateName = String(buffer, charset)
                     getDataFromJson(cateName)
-                //}
             } else {
                 //token = categoryName
                 val jsonFile = "${categoryName}.json"
@@ -162,7 +173,8 @@ class ArcadeFragment : Fragment() {
                             rightAns,
                             wrongAns,
                             0,
-                            "Arcade"
+                            "Arcade",
+                            index
                         )
                     )
                 timer.cancel()
@@ -173,7 +185,7 @@ class ArcadeFragment : Fragment() {
             onQuit()
         }
 
-        countDownTimer()
+
         return binding.root
     }
 
@@ -190,7 +202,8 @@ class ArcadeFragment : Fragment() {
                             rightAns,
                             wrongAns,
                             0,
-                            "Arcade"
+                            "Arcade",
+                            index
                         )
                     )
             }
@@ -269,7 +282,8 @@ class ArcadeFragment : Fragment() {
                 rightAns,
                 wrongAns,
                 0,
-                "Arcade"
+                "Arcade",
+                index
             ))}
             setNegativeButton("No",null)
         }
@@ -287,8 +301,6 @@ class ArcadeFragment : Fragment() {
         val qsData = obj.getJSONArray("questionsData")
         for (i in 0 until qsData.length()) {
             val qsObj = qsData.getJSONObject(i)
-
-            val id = qsObj.getInt("id")
             val qs = qsObj.getString("qs")
             val option1 = qsObj.getString("option1")
             val option2 = qsObj.getString("option2")
@@ -297,14 +309,40 @@ class ArcadeFragment : Fragment() {
             val answer = qsObj.getString("answer")
 
             val qsDetails =
-                QuestionDataJson(id, qs, option1, option2, option3, option4, answer)
+                QuestionDataJson(qs, option1, option2, option3, option4, answer)
             dbQuestion.add(qsDetails)
-
-            dbQuestion.shuffle()
-            playAnim(binding.questionTxt, 0, dbQuestion[index].question)
 
             continue
         }
+
+        arcadeViewModel.indexNo.observe(viewLifecycleOwner,{it ->
+            it?.let {
+                if(it==0){
+                    dbQuestion.shuffle()
+                }
+                index = it
+                if (index < dbQuestion.size) {
+                    playAnim(binding.questionTxt, 0, dbQuestion[index].question)
+                } else {
+                    qsEndDialog()
+                }
+            }
+
+        })
+    }
+
+    private fun qsEndDialog(){
+        timer.cancel()
+        val builder = AlertDialog.Builder(requireActivity())
+        builder.apply{
+            setCancelable(false)
+            setMessage("No new question.New questions will add very soon. Please stay with us.")
+            setPositiveButton("Ok"){_,_->
+                findNavController().navigate(ArcadeFragmentDirections.actionArcadeFragmentToHomeFragment())
+            }
+        }
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
     }
 
 
