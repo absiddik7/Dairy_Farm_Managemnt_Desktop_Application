@@ -169,4 +169,17 @@ class HomeViewModel(
     fun onNavigateToCategory() {
         _navigateToCategory.value = true
     }
+
+
+    private val _navigateToTrueFalse = MutableLiveData<Boolean?>()
+    val navigateToTrueFalse: LiveData<Boolean?>
+        get() = _navigateToTrueFalse
+
+    fun doneTrueFalseNavigation() {
+        _navigateToTrueFalse.value = null
+    }
+
+    fun onNavigateToTrueFalse() {
+        _navigateToTrueFalse.value = true
+    }
 }

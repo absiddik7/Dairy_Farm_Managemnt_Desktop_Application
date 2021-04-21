@@ -63,9 +63,9 @@
             android:id="@+id/button"
             style="@style/HomeButton"
             android:layout_width="match_parent"
-            android:layout_marginTop="52dp"
+            android:layout_marginTop="48dp"
             android:background="@drawable/custom_btn_classic"
-            android:drawableStart="@drawable/ic_quick_play"
+            android:drawableStart="@drawable/ic_play_arrow"
             android:onClick="@{() -> homeViewModel.onStartQuiz()}"
             android:text="@string/btn_classic"
             android:textColor="@color/white"
@@ -87,6 +87,19 @@
             app:layout_constraintTop_toBottomOf="@+id/button" />
 
         <android.widget.Button
+            android:id="@+id/button4"
+            style="@style/HomeButton"
+            android:layout_width="match_parent"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/custom_btn_true_false"
+            android:drawableStart="@drawable/ic_check"
+            android:text="True/False"
+            android:onClick="@{() -> homeViewModel.onNavigateToTrueFalse()}"
+            app:layout_constraintEnd_toEndOf="@+id/button2"
+            app:layout_constraintStart_toStartOf="@+id/button2"
+            app:layout_constraintTop_toBottomOf="@+id/button2" />
+
+        <android.widget.Button
             android:id="@+id/button3"
             style="@style/HomeButton"
             android:layout_width="match_parent"
@@ -98,8 +111,9 @@
             android:text="@string/btn_categories"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/button2"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/button2"
-            app:layout_constraintTop_toBottomOf="@+id/button2"
+            app:layout_constraintTop_toBottomOf="@+id/button4"
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
@@ -112,6 +126,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button3" />
+
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -74,6 +74,16 @@ class HomeFragment : Fragment() {
             }
         })
 
+        homeViewModel.navigateToTrueFalse.observe(viewLifecycleOwner,{
+            it?.let {
+                this.findNavController().navigate(
+                    HomeFragmentDirections.actionHomeFragmentToTrueFalseGame()
+                )
+                homeViewModel.doneTrueFalseNavigation()
+            }
+        })
+
+
         homeViewModel.setInitialScore()
 
         return binding.root

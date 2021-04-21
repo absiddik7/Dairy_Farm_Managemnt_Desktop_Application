@@ -45,7 +45,7 @@
     <string name="your_performance">Your Performance</string>
     <string name="answered">Answered</string>
     <string name="correct_answer">Correct Answer</string>
-    <string name="score_0">0%</string>
+    <string name="score_0">0</string>
     <string name="performance_per_category">Performance per category</string>
     <string name="questions_0">Questions: 0</string>
     <string name="how_knowledgeable_are_you">How knowledgeable are you?</string>

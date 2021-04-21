@@ -20,7 +20,6 @@ import androidx.navigation.fragment.navArgs
 import com.app.quickquiz.R
 import com.app.quickquiz.bookmarkDB.BookmarkData
 import com.app.quickquiz.bookmarkDB.BookmarkDatabase
-import com.app.quickquiz.classic.GamePlayFragmentDirections
 import com.app.quickquiz.classic.QuestionDataJson
 import com.app.quickquiz.database.ScoreDatabase
 import com.app.quickquiz.databinding.FragmentArcadeBinding
@@ -134,7 +133,6 @@ class ArcadeFragment : Fragment() {
                 }
             }
         }
-
 
         arcadeBookmark = binding.arcadeBookmarkBtn
         arcadeBookmark.setOnClickListener{

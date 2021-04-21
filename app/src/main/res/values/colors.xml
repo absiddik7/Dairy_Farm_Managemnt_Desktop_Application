@@ -19,5 +19,6 @@
     <color name="apple_white">#f6f3ed</color>
     <color name="orange">#FF6D00</color>
     <color name="brown">#FFAB00</color>
+    <color name="red">#ff0000</color>
 
 </resources>
