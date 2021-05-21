@@ -37,6 +37,7 @@ class GamePlayFragment : Fragment() {
     private val args: GamePlayFragmentArgs by navArgs()
     private lateinit var gamePlayViewModel: GamePlayViewModel
     private var index = 0
+    private var flag = 0
     private var count = 0
     private var rightAns = 0L
     private var wrongAns = 0L
@@ -83,7 +84,7 @@ class GamePlayFragment : Fragment() {
         })
 
         dbQuestion = ArrayList()
-        dbQuestion.shuffle()
+       // dbQuestion.shuffle()
         countDownTimer()
 
         val cateName: String?
@@ -180,7 +181,8 @@ class GamePlayFragment : Fragment() {
                             wrongAns,
                             unAnswered,
                             token,
-                            index
+                            index,
+                            dbQuestion.size
                         )
                     )
                 timer.cancel()
@@ -217,7 +219,8 @@ class GamePlayFragment : Fragment() {
                                 wrongAns,
                                 unAnswered,
                                 token,
-                                index
+                                index,
+                                dbQuestion.size
                             )
                         )
                 }
@@ -296,7 +299,8 @@ class GamePlayFragment : Fragment() {
                             wrongAns,
                             unAnswered,
                             token,
-                            index
+                            index,
+                            dbQuestion.size
                         )
                     )
             }
@@ -326,7 +330,8 @@ class GamePlayFragment : Fragment() {
                     wrongAns,
                     unAnswered,
                     token,
-                    index
+                    index,
+                    dbQuestion.size
                 ))
             }
             setNegativeButton("No", null)
@@ -369,7 +374,9 @@ class GamePlayFragment : Fragment() {
                 if (index < dbQuestion.size) {
                     playAnim(binding.questionText, 0, dbQuestion[index].question)
                 } else {
-                    endOfQSBankDialog()
+                    //endOfQSBankDialog()
+                    index = 0
+                    playAnim(binding.questionText, 0, dbQuestion[index].question)
                 }
             }
         })

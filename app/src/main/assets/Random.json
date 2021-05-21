@@ -106,15 +106,9 @@
       "option3": "Tree",
       "option4": "House",
       "answer": "Fruit"
-    },
-    {
-
-      "qs": "How many letters in A to Z?",
-      "option1": "35",
-      "option2": "26",
-      "option3": "36",
-      "option4": "21",
-      "answer": "26"
     }
+
+
+
   ]
 }

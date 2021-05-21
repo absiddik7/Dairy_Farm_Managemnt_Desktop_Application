@@ -39,6 +39,7 @@ class HomeViewModel(
                                         0,
                                         0,
                                         0,
+                                        0,
                                         0)
                                 insert(initialSore)
                             }
@@ -47,6 +48,7 @@ class HomeViewModel(
                                     CategoriesScore(0,
                                         fileName,
                                         R.drawable.ic_notifications,
+                                        0,
                                         0,
                                         0,
                                         0,
@@ -61,7 +63,7 @@ class HomeViewModel(
                                         0,
                                         0,
                                         0,
-                                        0)
+                                        0, 0)
                                 insert(initialSore)
                             }
                             "Geography" -> {
@@ -72,7 +74,7 @@ class HomeViewModel(
                                         0,
                                         0,
                                         0,
-                                        0)
+                                        0, 0)
                                 insert(initialSore)
                             }
                             "History" -> {
@@ -83,7 +85,7 @@ class HomeViewModel(
                                         0,
                                         0,
                                         0,
-                                        0)
+                                        0, 0)
                                 insert(initialSore)
                             }
                             "Science" -> {
@@ -91,6 +93,7 @@ class HomeViewModel(
                                     CategoriesScore(0,
                                         fileName,
                                         R.drawable.ic_chemistry_category,
+                                        0,
                                         0,
                                         0,
                                         0,
@@ -105,7 +108,7 @@ class HomeViewModel(
                                         0,
                                         0,
                                         0,
-                                        0)
+                                        0, 0)
                                 insert(initialSore)
                             }
                             "Universe" -> {
@@ -116,7 +119,7 @@ class HomeViewModel(
                                         0,
                                         0,
                                         0,
-                                        0)
+                                        0, 0)
                                 insert(initialSore)
                             }
                         }

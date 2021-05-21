@@ -10,13 +10,14 @@ class ScoreViewModelFactory(
     private val categoriesName: String,
     private val rightAns: Long,
     private val wrongAns: Long,
-    private val indexNo:Int
+    private val indexNo:Int,
+    private val qsArraySize:Int
 
 ) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(ScoreViewModel::class.java)) {
-            return ScoreViewModel(dataSource, categoriesName, rightAns, wrongAns,indexNo) as T
+            return ScoreViewModel(dataSource, categoriesName, rightAns, wrongAns,indexNo,qsArraySize) as T
         }
         throw IllegalArgumentException("Unknown ViewModel Class")
     }

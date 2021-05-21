@@ -41,10 +41,11 @@ class ScoreFragment : Fragment() {
         val unAns = args.unAnswered
         val totalQs = rightAns + wrongAns + unAns
         val indexNo = args.index
+        val arraySize = args.qsArraySize
 
         val application = requireNotNull(this.activity).application
         val dataSource = ScoreDatabase.getInstance(application).scoreDatabaseDao
-        val viewModelFactory = ScoreViewModelFactory(dataSource,token,rightAns,wrongAns,indexNo)
+        val viewModelFactory = ScoreViewModelFactory(dataSource,token,rightAns,wrongAns,indexNo,arraySize)
 
         scoreViewModel = ViewModelProvider(this,viewModelFactory).get(ScoreViewModel::class.java)
         binding.scoreViewModel = scoreViewModel
@@ -107,6 +108,13 @@ class ScoreFragment : Fragment() {
                         scoreViewModel.doneNavigateFromPlayAgain()
                     }
                     "Arcade" -> {
+                        this.findNavController()
+                            .navigate(
+                                ScoreFragmentDirections.actionScoreFragmentToQuizFilterFragment()
+                            )
+                        scoreViewModel.doneNavigateFromPlayAgain()
+                    }
+                    "TrueFalse" -> {
                         this.findNavController()
                             .navigate(
                                 ScoreFragmentDirections.actionScoreFragmentToQuizFilterFragment()

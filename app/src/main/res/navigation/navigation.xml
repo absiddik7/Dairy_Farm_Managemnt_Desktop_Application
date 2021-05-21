@@ -193,6 +193,8 @@
         <argument
             android:name="index"
             app:argType="integer" />
+        <argument android:name="qsArraySize"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/aboutFragment"
@@ -213,5 +215,8 @@
         <action
             android:id="@+id/action_trueFalseGame_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_trueFalseGame_to_scoreFragment"
+            app:destination="@id/scoreFragment" />
     </fragment>
 </navigation>

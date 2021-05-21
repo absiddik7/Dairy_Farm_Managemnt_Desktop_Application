@@ -12,7 +12,8 @@ class ScoreViewModel(
     private val categoryName: String,
     private val rightScore: Long,
     private val wrongScore: Long,
-    private val indexNo: Int,
+    private var indexNo: Int,
+    private val qsArraySize: Int,
 
     ) : ViewModel() {
 
@@ -34,7 +35,8 @@ class ScoreViewModel(
                             rightScore,
                             wrongScore,
                             highScore,
-                            indexNo)
+                            indexNo,
+                            0)
                     insert(newScore)
                 } else {
                     onUpdateScore()
@@ -50,12 +52,40 @@ class ScoreViewModel(
                 val correctScore = allScore.correctAns + rightScore
                 val wrongScore = allScore.wrongAns + wrongScore
                 var highScore = allScore.highScore
+                val index = allScore.indexNo
+                val oldIndex = allScore.oldIndex
 
                 if (rightScore > highScore) {
                     highScore = rightScore
                 }
+                db.updateScore(categoryName, correctScore, wrongScore, highScore, indexNo, oldIndex)
 
-                db.updateScore(categoryName, correctScore, wrongScore, highScore, indexNo)
+                if (indexNo == qsArraySize) {
+                    if (indexNo > oldIndex) {
+                        val oldindex = indexNo
+                        db.updateScore(categoryName,
+                            correctScore,
+                            wrongScore,
+                            highScore,
+                            indexNo,
+                            oldindex
+                        )
+                    }
+                }
+
+                if (oldIndex != 0) {
+                    if (qsArraySize > oldIndex) {
+                        if (index < oldIndex) {
+                            db.updateScore(categoryName,
+                                correctScore,
+                                wrongScore,
+                                highScore,
+                                oldIndex,
+                                oldIndex
+                            )
+                        }
+                    }
+                }
             }
         }
     }

@@ -28,4 +28,7 @@ data class CategoriesScore(
     @ColumnInfo(name = "indexNo")
     val indexNo: Int,
 
+    @ColumnInfo(name = "oldIndex")
+    val oldIndex: Int,
+
     )

@@ -55,8 +55,7 @@
             android:progressDrawable="@drawable/circle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/score_quotes"
-            tools:progress="70" />
+            app:layout_constraintTop_toBottomOf="@+id/score_quotes" />
 
         <TextView
             android:id="@+id/progress_txt"

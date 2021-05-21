@@ -172,7 +172,8 @@ class ArcadeFragment : Fragment() {
                             wrongAns,
                             0,
                             "Arcade",
-                            index
+                            index,
+                            dbQuestion.size
                         )
                     )
                 timer.cancel()
@@ -201,7 +202,8 @@ class ArcadeFragment : Fragment() {
                             wrongAns,
                             0,
                             "Arcade",
-                            index
+                            index,
+                            dbQuestion.size
                         )
                     )
             }
@@ -281,7 +283,8 @@ class ArcadeFragment : Fragment() {
                 wrongAns,
                 0,
                 "Arcade",
-                index
+                index,
+                dbQuestion.size
             ))}
             setNegativeButton("No",null)
         }

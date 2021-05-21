@@ -23,8 +23,8 @@ interface ScoreDatabaseDao {
     @Query("SELECT EXISTS (SELECT 1 FROM score_table WHERE category_name = :categoryName)")
     fun exists(categoryName: String): Boolean?
 
-    @Query("UPDATE score_table SET correct_ans = :correctAns,wrong_ans = :wrongAns,high_score = :highScore, indexNo =:indexNo WHERE category_name = :categoryName")
-    fun updateScore(categoryName: String, correctAns: Long, wrongAns: Long, highScore: Long, indexNo:Int)
+    @Query("UPDATE score_table SET correct_ans = :correctAns,wrong_ans = :wrongAns,high_score = :highScore, indexNo =:indexNo, oldIndex =:oldIndexNo WHERE category_name = :categoryName")
+    fun updateScore(categoryName: String, correctAns: Long, wrongAns: Long, highScore: Long, indexNo:Int,oldIndexNo:Int)
 
     @Query("SELECT SUM(correct_ans) FROM score_table ORDER BY id DESC")
     fun allCorrectScoreSum(): Long
