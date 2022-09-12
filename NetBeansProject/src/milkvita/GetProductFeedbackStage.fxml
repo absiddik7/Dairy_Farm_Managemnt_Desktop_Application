@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="milkvita.GetProductFeedbackStageController">
+   <children>
+      <Label alignment="CENTER" layoutX="212.0" layoutY="-1.0" prefHeight="23.0" prefWidth="600.0" style="-fx-background-color: #355c7D;" text="Product Feedback" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font>
+      </Label>
+      <TableView fixedCellSize="0.0" layoutX="14.0" layoutY="29.0" minWidth="-Infinity" AnchorPane.leftAnchor="14.0">
+        <columns>
+          <TableColumn minWidth="90.0" prefWidth="90.0" text="ID" />
+          <TableColumn minWidth="90.0" prefWidth="90.0" text="Batch No" />
+            <TableColumn minWidth="0.0" prefWidth="0.0" text="Contact" />
+            <TableColumn minWidth="100.0" prefWidth="100.0" text="Product Name" />
+            <TableColumn minWidth="0.0" prefWidth="0.0" text="Join Date" />
+            <TableColumn minWidth="115.0" prefWidth="185.33331298828125" text="Feedback" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

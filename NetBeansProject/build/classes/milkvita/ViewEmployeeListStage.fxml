@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="milkvita.ViewEmployeeListStageController">
+   <children>
+      <Label alignment="CENTER" layoutX="4.0" layoutY="2.0" maxWidth="1.7976931348623157E308" prefHeight="23.0" prefWidth="600.0" style="-fx-background-color: #355c7D;" text="All Employees" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font>
+      </Label>
+      <TableView fx:id="viewEmployeeInfoTable" fixedCellSize="0.0" layoutX="23.0" layoutY="39.0" minWidth="-Infinity">
+         <columns>
+            <TableColumn fx:id="dateColumn" minWidth="100.0" prefWidth="100.0" text="Join Date" />
+            <TableColumn fx:id="idColumn" minWidth="80.0" text="ID" />
+            <TableColumn fx:id="nameColumn" prefWidth="110.0" text="Name" />
+            <TableColumn minWidth="0.0" prefWidth="0.0" text="Contact" />
+            <TableColumn minWidth="0.0" prefWidth="0.0" text="Join Date" />
+            <TableColumn fx:id="designationCoulmn" minWidth="95.0" prefWidth="95.0" text="Designation" />
+            <TableColumn fx:id="salaryColumn" minWidth="100.0" prefWidth="100.0" text="Salary" />
+            <TableColumn fx:id="passwordCollumn" minWidth="100.0" prefWidth="100.0" text="Password" />
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>
